@@ -1,6 +1,7 @@
-
 import React, { Component } from 'react'
 import axios from 'axios'
+import Navba from './navba'
+import Carrousel from './carrousel'
 
 export default class App extends Component {
   constructor(){
@@ -16,13 +17,28 @@ export default class App extends Component {
   
 
   render() {
-    
+    // console.log(process.env.REACT_APP_TOKEN)
+
     return (
       <div className="App">
-
-        {this.state.cat.map((el)=>
-        <div>{el.name}</div>)}
-        
+              <Navba />
+       <div><Carrousel/></div> 
+              <div className='descriptionChild0' style={{display:'flex',alignItems:'center'}}>
+                 <div className='descriptionChild1'>
+                    {this.state.cat.map((el)=><div>
+                          <p><b>{el.slogan}</b></p>
+                           <p>{el.description}</p> </div>)}
+                 </div>
+                 <div className='descriptionChild2'>
+                     <ul className="removeBullets">
+                       {this.state.cat.map((item, index) => (
+                       <li key={index}>
+                         ✓ {item.name} - {item.id}
+                       </li>))}
+                     </ul>
+                </div>
+              </div>
+          
       </div>
     )
   }
